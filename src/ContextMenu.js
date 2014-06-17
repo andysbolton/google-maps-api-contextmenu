@@ -26,6 +26,7 @@ function ContextMenu(map, options){
 	this.mapDiv_=map.getDiv();
 	this.menuItems_=options.menuItems || [];
 	this.pixelOffset=options.pixelOffset || new google.maps.Point(10, -5);
+	this.zIndex = options.zIndex || null;
 }
 
 ContextMenu.prototype=new google.maps.OverlayView();
@@ -97,6 +98,7 @@ ContextMenu.prototype.onAdd=function(){
 		menu.className=this.classNames_.menu;
 	}
 	menu.style.cssText='display:none; position:absolute';
+	if(this.zIndex != null) menu.style.zIndex = this.zIndex;
 	
 	for(var i=0, j=this.menuItems_.length; i<j; i++){
 		if(this.menuItems_[i].label && this.menuItems_[i].eventName){
