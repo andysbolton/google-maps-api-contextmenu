@@ -1,0 +1,174 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>ContextMenu 1.0 Reference</title>
+<style type="text/css">
+html{
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:14px;
+}
+table{
+	border-collapse:collapse;
+	margin-bottom:10px;
+	width:100%;
+}
+table th{
+	background-color:#E5ECF9;
+}
+</style>
+</head>
+<body>
+<table border="1" cellpadding="5">
+	<tr>
+		<th align="left" colspan="2">ContextMenu 1.0 Reference</th>
+	</tr>
+	<tr>
+		<td colspan="3">
+			ContextMenu is a context menu for Google Maps API v3.<br />
+			The menu and it's actions are fully configurable. When you create an instance of ContextMenu you define the menu items that your application requires.<br />
+			A click on a menu item will trigger an event <b>menu_item_selected</b> and pass the menu's position (a <b>LatLng</b> object) and the clicked menu item's <b>eventName</b> to any event listener.<br />
+			<br />
+			ContextMenu is a custom overlay object that implements the <b>google.maps.OverlayView</b> interface.
+		</td>
+	</tr>
+</table>
+<table border="1" cellpadding="5">
+	<tr>
+		<th align="left" colspan="3">ContextMenu object</th>
+	</tr>
+	<tr>
+		<th align="left">Constructor</th>
+		<th align="left" colspan="2">Description</th>
+	</tr>
+	<tr>
+		<td>ContextMenu(map:<b>google.maps.Map</b>, contextMenuOptions:<b>ContextMenuOptions</b>)</td>
+		<td colspan="2">
+			Creates a ContextMenu using the ContextMenuOptions object and adds it to the Map map.<br />
+			The ContextMenu will be hidden until it's show() method is executed.
+		</td>
+	</tr>
+	<tr>
+		<th align="left">Method</th>
+		<th align="left">Return Value</th>
+		<th align="left">Description</th>
+	</tr>
+	<tr>
+		<td>getVisible()</td>
+		<td>boolean</td>
+		<td>Gets the visible state of the ContextMenu</td>
+	</tr>
+	<tr>
+		<td>hide()</td>
+		<td>None</td>
+		<td>Hides the ContextMenu</td>
+	</tr>
+	<tr>
+		<td>show(position:google.maps.LatLng)</td>
+		<td>None</td>
+		<td>Sets the ContextMenu's position and makes it visible.</td>
+	</tr>
+	<tr>
+		<th align="left">Event</th>
+		<th align="left">Arguments</th>
+		<th align="left">Description</th>
+	</tr>
+	<tr>
+		<td>menu_item_selected</td>
+		<td>google.maps.LatLng, string</td>
+		<td>
+			This event is triggered when the user clicks a menu item.<br />
+			An event listener will be passed the ContextMenu position and the clicked menu item's <b>eventName</b>
+		</td>
+	</tr>
+</table>
+<table border="1" cellpadding="5">
+	<tr>
+		<th align="left" colspan="3">ContextMenuOptions object</th>
+	</tr>
+	<tr>
+		<td colspan="3">ContextMenuOptions has no constructor, it is implemented as an object literal.</td>
+	</tr>
+	<tr>
+		<th align="left">Property</th>
+		<th align="left">Type</th>
+		<th align="left">Description</th>
+	</tr>
+	<tr>
+		<td>classNames</td>
+		<td>object literal</td>
+		<td>
+			Optional.<br />
+			It has two optional <b>string</b> properties: <b>menu</b> and <b>menuSeparator</b>.<br />
+			These CSS classNames will be applied to the menu which is the ContextMenu's main HTML element, and to any menuSeparators which are non-clickable spacer elements in the menu list. 
+		</td>
+	</tr>
+	<tr>
+		<td>menuItems</td>
+		<td>Array of <b>ContextMenuItem</b></td>
+		<td>
+			Required.<br />
+			Defines the menu items that will be added to the ContextMenu.
+		</td>
+	</tr>
+	<tr>
+		<td>pixelOffset</td>
+		<td>google.maps.Point</td>
+		<td>
+			Optional.<br />
+			Defines an offset at which to display the ContextMenu relative to the ContextMenu's position.
+		</td>
+	</tr>
+</table>
+<table border="1" cellpadding="5">
+	<tr>
+		<th align="left" colspan="3">ContextMenuItem object</th>
+	</tr>
+	<tr>
+		<td colspan="3">ContextMenuItem has no constructor, it is implemented as an object literal.</td>
+	</tr>
+	<tr>
+		<th align="left">Property</th>
+		<th align="left">Type</th>
+		<th align="left">Description</th>
+	</tr>
+	<tr>
+		<td>className</td>
+		<td>string</td>
+		<td>
+			Optional.<br />
+			A CSS className to apply to the clickable menu item.
+		</td>
+	</tr>
+	<tr>
+		<td>eventName</td>
+		<td>string</td>
+		<td>
+			Required.<br />
+			An identifier passed to any <b>menu_item_selected</b> event listener.
+		</td>
+	</tr>
+	<tr>
+		<td>id</td>
+		<td>string</td>
+		<td>
+			Optional.<br />
+			A CSS id to apply to the clickable menu item.
+		</td>
+	</tr>
+	<tr>
+		<td>label</td>
+		<td>string</td>
+		<td>
+			Required.<br />
+			The text to display in the clickable menu item.
+		</td>
+	</tr>
+	<tr>
+		<td colspan="3">
+			Alternatively use an object with <b>no properties {}</b> as a ContextMenuItem and a menuSeparator will be created.
+		</td>
+	</tr>
+</table>
+</body>
+</html>
