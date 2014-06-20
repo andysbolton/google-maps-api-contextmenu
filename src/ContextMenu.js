@@ -80,7 +80,8 @@ ContextMenu.prototype.onAdd=function(){
 		}
 		menuItem.style.cssText='cursor:pointer; white-space:nowrap';
 		menuItem.onclick=function(){
-			google.maps.event.trigger($this, 'menu_item_selected', $this.position_, values.eventName);
+			google.maps.event.trigger($this, 'menu_item_selected', $this.position_, 
+				values.eventName, $this.source);
 		};
 		return menuItem;
 	}
@@ -129,7 +130,8 @@ ContextMenu.prototype.onRemove=function(){
 	delete this.position_;
 };
 
-ContextMenu.prototype.show=function(latLng){
+ContextMenu.prototype.show=function(latLng, source){
+	this.source = source;
 	if(!this.isVisible_){
 		this.menu_.style.display='block';
 		this.isVisible_=true;
