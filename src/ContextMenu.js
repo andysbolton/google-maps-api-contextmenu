@@ -82,6 +82,9 @@ ContextMenu.prototype.onAdd=function(){
 		menuItem.onclick=function(){
 			google.maps.event.trigger($this, 'menu_item_selected', $this.position_, 
 				values.eventName, $this.source);
+			
+			// Manually hide the menu because events are not allowed to propagate to map
+			$this.hide();
 		};
 		return menuItem;
 	}
@@ -100,6 +103,21 @@ ContextMenu.prototype.onAdd=function(){
 	}
 	menu.style.cssText='display:none; position:absolute';
 	if(this.zIndex != null) menu.style.zIndex = this.zIndex;
+	
+	
+	// Turning off propagation of events down to the map
+	var depropagator = function(e) {
+		var evt = e ? e:window.event;
+			if (evt.stopPropagation)    evt.stopPropagation();
+			if (evt.cancelBubble!=null) evt.cancelBubble = true;
+	};
+	menu.onclick = depropagator;
+	menu.onmouseover = depropagator;
+	menu.onmousemove = depropagator;
+	menu.onmouseenter = depropagator;
+	menu.onmouseleave = depropagator;
+	menu.onmouseout = depropagator;
+	
 	
 	for(var i=0, j=this.menuItems_.length; i<j; i++){
 		if(this.menuItems_[i].label && this.menuItems_[i].eventName){
