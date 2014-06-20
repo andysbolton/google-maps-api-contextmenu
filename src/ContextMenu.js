@@ -1,21 +1,51 @@
 /*
-	ContextMenu v1.0
+	ContextMenu v1.1
 	
 	A context menu for Google Maps API v3
+	
+	Original (1.0) by Martin Pearman
 	http://code.martinpearman.co.uk/googlemapsapi/contextmenu/
-	
-	Copyright Martin Pearman
 	Last updated 21st November 2011
-	
 	developer@martinpearman.co.uk
 	
-	This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+	Fork (1.1) by Milos Milutinovic
+	https://github.com/knezmilos13/google-maps-api-contextmenu
+	
+	This program is free software: you can redistribute it and/or modify it under the terms of the
+	GNU General Public License as published by the Free Software Foundation, either version 3 of 
+	the License, or (at your option) any later version.
 
-	This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+	This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; 
+	without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  
+	See the GNU General Public License for more details.
 
-	You should have received a copy of the GNU General Public License along with this program.  If not, see <http://www.gnu.org/licenses/>.
+	You should have received a copy of the GNU General Public License along with this program.  
+	If not, see <http://www.gnu.org/licenses/>.
 */
 
+/**
+ * Creates a new ContextMenu
+ * @constructor
+ * @augments google.maps.OverlayView
+ * @param {google.maps.Map} map
+ *     The map in which the context menu will be shown
+ * @param {object} options
+ *     Additional options for customizing context menu. Possible values:
+ *     - classNames (object) - class names to be added to certain menu elements
+ *         - menu (string) - class name to be added to the entire context menu
+ *         - menuSeparator (string) - class name to be added to menu separators
+ *     - menuItems (array) - array of objects that will be added to menu. If the object doesn't
+ *       contain either label or eventName, it will be displayed as a separator, otherwise as
+ *       menu item. Objects can include following attributes:
+ *         - className (string) - optional class name that will be added to the menu item
+ *         - eventName (string) - parameter used for detecting which menu item was selected
+ *         - id (string) - optional id that will be added to the menu item
+ *         - label (string) - text displayed on menu item.
+ *     - pixelOffset (oogle.maps.Point) - how many pixels will the menu be offset from the mouse.
+ *       Default offset value is (10, -5).
+ *     - zIndex (int) - sets zIndex on the entire menu. Useful for making sure your menu doesn't
+ *       get hidden under some other elements shown on map (markers, info windows...)
+ */
 function ContextMenu(map, options){
 	options=options || {};
 	
@@ -148,6 +178,14 @@ ContextMenu.prototype.onRemove=function(){
 	delete this.position_;
 };
 
+/**
+ * Displays context menu.
+ * @param {google.maps.LatLng} latLng
+ *     Coordinates where to display menu (offset by options.pixelOffset)
+ * @param {object} source
+ *     Which map element was the source for displaying the context menu (e.g. user right-clicked
+ *     a map marker). Will be passed to listeners listening for "menu_item_selected" event.
+ */
 ContextMenu.prototype.show=function(latLng, source){
 	this.source = source;
 	if(!this.isVisible_){
