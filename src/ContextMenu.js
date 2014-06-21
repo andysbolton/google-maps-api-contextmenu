@@ -31,6 +31,7 @@
  *     The map in which the context menu will be shown
  * @param {object} options
  *     Additional options for customizing context menu. Possible values:
+ *     - id (string) - optional ID for entire menu
  *     - classNames (object) - class names to be added to certain menu elements
  *         - menu (string) - class name to be added to the entire context menu
  *         - menuSeparator (string) - class name to be added to menu separators
@@ -50,10 +51,11 @@ function ContextMenu(map, options){
 	options=options || {};
 	
 	this.setMap(map);
-	
-	this.classNames_=options.classNames || {};
 	this.map_=map;
 	this.mapDiv_=map.getDiv();
+	
+	this.id = options.id;
+	this.classNames_=options.classNames || {};
 	this.menuItems_=options.menuItems || [];
 	this.pixelOffset=options.pixelOffset || new google.maps.Point(10, -5);
 	this.zIndex = options.zIndex || null;
@@ -102,6 +104,9 @@ ContextMenu.prototype.onAdd=function(){
 	function createMenuItem(values){
 		var menuItem=document.createElement('div');
 		menuItem.innerHTML=values.label;
+		if (this.id) {
+			menu.id = this.id;
+		}
 		if(values.className){
 			menuItem.className=values.className;
 		}

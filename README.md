@@ -20,7 +20,7 @@ The usage pattern consists of following steps:
 
         var contextMenuOptions  = {
         	classNames: menuStyle,
-        	menuitems: [
+        	menuItems: [
         		{ label:'option1', id:'menu_option1', 
         			className: 'menu_item', eventName:'option1_clicked' },
         		{ label:'option2', id:'menu_option2', 
