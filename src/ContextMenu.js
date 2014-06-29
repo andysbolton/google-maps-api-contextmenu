@@ -35,6 +35,7 @@
  *     - classNames (object) - class names to be added to certain menu elements
  *         - menu (string) - class name to be added to the entire context menu
  *         - menuSeparator (string) - class name to be added to menu separators
+ *         - menuItem (string) - class name to be added to menu items (can be overriden for each item)
  *     - menuItems (array) - array of objects that will be added to menu. If the object doesn't
  *       contain either label or eventName, it will be displayed as a separator, otherwise as
  *       menu item. Objects can include following attributes:
@@ -108,7 +109,7 @@ ContextMenu.prototype.onAdd=function(){
 			menu.id = this.id;
 		}
 		if(values.className){
-			menuItem.className=values.className;
+			menuItem.className = values.className || self.classNames_.menuItem;
 		}
 		if(values.id){
 			menuItem.id=values.id;
