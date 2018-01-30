@@ -192,9 +192,9 @@ ContextMenu.prototype.onRemove=function(){
  *     Which map element was the source for displaying the context menu (e.g. user right-clicked
  *     a map marker). Will be passed to listeners listening for "menu_item_selected" event.
  */
-ContextMenu.prototype.show=function(latLng, source, userData){
+ContextMenu.prototype.show=function(latLng, source, data){
 	this.source = source;
-	this.userData = userData;
+	this.data = data;
 	if(!this.isVisible_){
 		this.menu_.style.display='block';
 		this.isVisible_=true;
