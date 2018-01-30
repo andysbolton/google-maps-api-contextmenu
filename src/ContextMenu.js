@@ -117,7 +117,7 @@ ContextMenu.prototype.onAdd=function(){
 		menuItem.style.cssText='cursor:pointer; white-space:nowrap';
 		menuItem.onclick=function(){
 			google.maps.event.trigger($this, 'menu_item_selected', $this.position_, 
-				values.eventName, $this.source);
+				values.eventName, $this.source, $this.data);
 			
 			// Manually hide the menu because events are not allowed to propagate to map
 			$this.hide();
